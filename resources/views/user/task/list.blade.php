@@ -108,7 +108,7 @@
                                      <i class="fa-solid fa-eye"></i>
                                  </a>
                              @endif
-                             <button class="btn btn-success btn-sm" id="btn-OTP" data-value="{{ $task->id }}">
+                             <button class="btn btn-success btn-sm btn-OTP" data-value="{{ $task->id }}">
                                  <i class="fa-solid fa-phone"></i>
                              </button>
                          </td>

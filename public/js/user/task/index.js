@@ -14,7 +14,7 @@ $(document).ready(function () {
         getQuantity();
     });
 
-    $("#btn-OTP").on('click', function (event) {
+    $(".btn-OTP").on('click', function (event) {
         let rs = confirm('Bạn có muốn lấy mã OTP?');
         if (rs) {
             let id = $(this).attr('data-value');
