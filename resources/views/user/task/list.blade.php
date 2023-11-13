@@ -29,7 +29,7 @@
      </div>
 
      <div class="table-responsive">
-         <table class="table table-bordered table-hover" style="font-size:12px">
+         <table class="table table-bordered table-hover" id="tbl-task" style="font-size:12px">
              <thead>
                  <tr style="text-align:center">
                      <th class="col-id_task">Mã nhiệm vụ</th>
@@ -52,7 +52,7 @@
                  </tr>
              <tbody class=".table-striped" id="space">
                  @foreach ($tasks as $task)
-                     <tr>
+                     <tr data-value="{{ json_encode($task) }}">
                          <td style="text-align:center">{{ $task->id_task }}</td>
                          <td class="col-hidden-sm">{{ $task->name }}</td>
                          <td class="col-hidden-sm">{{ $task->password }}</td>
@@ -102,15 +102,11 @@
                                  onclick="return confirm('Do you want to delete?')">
                                  <i class="fas fa-trash"></i>
                              </a>
-                             @if ($task->is_display_otp === 0)
-                                 <a href="/user/task/display/{{ $task->id }}" class="btn btn-info btn-sm"
-                                     onclick="return confirm('Bạn có muốn hiển thị số điện thoại OTP?')">
+                             @if (!$task->otp)
+                                 <button class="btn btn-info btn-sm btn-getOTP" data-value="{{ $task->id }}">
                                      <i class="fa-solid fa-eye"></i>
-                                 </a>
+                                 </button>
                              @endif
-                             <button class="btn btn-success btn-sm btn-OTP" data-value="{{ $task->id }}">
-                                 <i class="fa-solid fa-phone"></i>
-                             </button>
                          </td>
                      </tr>
                  @endforeach

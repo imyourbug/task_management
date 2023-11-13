@@ -67,11 +67,16 @@ class TaskController extends Controller
             ->update([
                 'is_display_otp' => 1
             ]);
-        if ($update) {
-            Toastr::success(__('message.success.update'), __('title.toastr.success'));
-        } else Toastr::error(__('message.fail.update'), __('title.toastr.fail'));
+        if (!$update) {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Không thể hiển thị',
+            ]);
+        }
 
-        return redirect()->back();
+        return response()->json([
+            'status' => 0,
+        ]);
     }
 
     public function destroy($id)
@@ -136,15 +141,23 @@ class TaskController extends Controller
             ]);
         }
         $otp =  '';
-        foreach($result->messages as $item) {
-            if(preg_match("/QUY KHACH KHONG GUI MA OTP CHO BAT KY AI/", $item->content)) {
-                $otp = $item->otp; break;
-            }
-        }
+        // if (preg_match("/QUY KHACH KHONG GUI MA OTP CHO BAT KY AI/", $result->messages[0]->content)) {
+            $otp = $result->messages[0]->otp;
+        // }
+
+        return response()->json([
+            'status' => 0,
+            'otp' => $otp ?? '',
+        ]);
+    }
+
+    public function updateOTP(Request $request)
+    {
+        $task = Task::firstWhere('id', $request->id);
+        $otp = $request->otp;
         $task->update([
             'otp' => $otp,
         ]);
-
         // update gg sheet
         // update result in gg sheet api
         $sheet = Sheets::spreadsheet(env('LINK_SHEET', '1qErf8Hu4gZWHLiqU6t7hL7ZuLTe7yZ3vW8pj0hI1lGE'))->sheet(env('SHEET_NAME', 'Demo'))->get();
