@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         return view('user.home', [
-            'title' => 'Home User',
+            'title' => 'Trang người dùng',
             'user' => Auth::user(),
         ]);
     }
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function login()
     {
         return view('user.login.index', [
-            'title' => 'Login'
+            'title' => 'Đăng nhập'
         ]);
     }
 
@@ -40,7 +40,8 @@ class UserController extends Controller
     public function recover(RecoverRequest $request)
     {
         if (!$user = User::firstWhere('email', $request->input('email'))) {
-            throw new Exception('Email is not exists!', 1);
+            Toastr::error('Email không tồn tại!', __('title.toastr.error'));
+            return redirect()->back();
         }
         $source = [
             'a', 'b', 'c', 'd', 'e', 'g', 1, 2, 3, 4, 5, 6
@@ -56,7 +57,7 @@ class UserController extends Controller
             Mail::to($request->input('email'))->send(new RecoverPasswordMail($new_password));
         }
 
-        Toastr::success(__('message.success.recover_password'), __('title.toastr.success'));
+        Toastr::success('Lấy mật khẩu thành công! Hãy kiểm tra email của bạn', __('title.toastr.success'));
         return redirect()->back();
     }
 

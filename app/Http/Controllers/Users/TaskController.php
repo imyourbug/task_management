@@ -93,7 +93,7 @@ class TaskController extends Controller
     {
         $id = Auth::id();
         return view('user.task.list', [
-            'title' => 'List task',
+            'title' => 'Danh sách',
             'tasks' => Task::where('user_id', $id)->orderByDesc('created_at')->get()
         ]);
     }

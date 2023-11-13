@@ -36,41 +36,25 @@
             </div>
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">Đăng ký thành viên</p>
-                    <form action="{{ route('users.checkRegister') }}" method="POST">
+                    <p class="login-box-msg">Lấy lại mật khẩu</p>
+                    <form action="{{ route('users.recover') }}" method="POST">
                         <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control" value="{{ old('email')}}" placeholder="Email">
+                            <input name="email" type="email" class="form-control" value="{{ old('email')}}" placeholder="Nhập email của bạn">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="password" name="password" value="{{ old('password')}}" class="form-control" placeholder="Mật khẩu">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="password" value="{{ old('repassword')}}" name="repassword" class="form-control" placeholder="Nhập lại mật khẩu">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                                <button type="submit" class="btn btn-primary btn-block">Lấy lại mật khẩu</button>
                             </div>
                         </div>
                         @csrf
                     </form>
                     <p class="mb-1">
-                        <a href="{{ route('users.forgot') }}">Quên mật khẩu</a>
+                        <a href="{{ route('users.register') }}">Đăng ký</a>
                     </p>
                     <p class="mb-0">
                         <a href="{{ route('users.login') }}" class="text-center">Đã có tài khoản</a>

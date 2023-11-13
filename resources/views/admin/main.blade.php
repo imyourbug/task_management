@@ -43,14 +43,14 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     @if (Auth::user()?->role == 1)
-                    <a href="{{route('admin.index') }}" class="nav-link">Home</a>
+                    <a href="{{route('admin.index') }}" class="nav-link">Trang chủ</a>
                     @else
-                    <a href="{{ route('users.home')  }}" class="nav-link">Home</a>
+                    <a href="{{ route('users.home')  }}" class="nav-link">Trang chủ</a>
                     @endif
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('users.logout') }}" onclick="return confirm('Do you want to logout?')"
-                        class="nav-link">Log out</a>
+                    <a href="{{ route('users.logout') }}" onclick="return confirm('Bạn có muốn đăng xuất?')"
+                        class="nav-link">Đăng xuất</a>
                 </li>
             </ul>
         </nav>

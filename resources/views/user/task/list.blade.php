@@ -22,7 +22,7 @@
                          Mã giảm 70k
                      </option>
                  </select>
-                 <button type="submit" class="btn btn-rounded btn-success">Upload task</button>
+                 <button type="submit" class="btn btn-rounded btn-success">Tải lên nhiệm vụ mới</button>
              </div>
              @csrf
          </form>
@@ -99,7 +99,7 @@
                                  </button>
                              @endif
                              <a href="/user/task/delete/{{ $task->id }}" class="btn btn-danger btn-sm"
-                                 onclick="return confirm('Do you want to delete?')">
+                                 onclick="return confirm('Bạn có muốn xóa?')">
                                  <i class="fas fa-trash"></i>
                              </a>
                              @if (!$task->otp)

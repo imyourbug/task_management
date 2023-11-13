@@ -28,7 +28,7 @@
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="{{route('admin.accounts.delete', ['id' => $user->id])}}" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Do you want to delete?')">
+                            onclick="return confirm('Bạn có muốn xóa?')">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>

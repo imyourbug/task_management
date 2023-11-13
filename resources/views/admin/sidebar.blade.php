@@ -74,7 +74,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-bars"></i>
                             <p>
-                                My task
+                                Nhiệm vụ của tôi
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -82,7 +82,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('users.task.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>List task</p>
+                                    <p>Danh sách</p>
                                 </a>
                             </li>
                         </ul>
