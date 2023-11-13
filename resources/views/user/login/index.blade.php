@@ -32,11 +32,10 @@
     <div class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="../../index2.html"><b>Task</b>Management</a>
+                <a href="#">Quản lý đơn hàng TikTok</a>
             </div>
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
                     <form action="{{ route('users.checkLogin') }}" method="POST">
                         <div class="input-group mb-3">
                             <input name="email" type="email" value="{{ old('email')}}" class="form-control" placeholder="Email">
@@ -55,25 +54,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                             </div>
                         </div>
                         @csrf
                     </form>
                     <p class="mb-1">
-                        <a href="{{ route('users.forgot') }}">I forgot my password</a>
+                        <a href="{{ route('users.forgot') }}">Quên mật khẩu</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{{ route('users.register') }}" class="text-center">Register a new membership</a>
+                        <a href="{{ route('users.register') }}" class="text-center">Đăng ký</a>
                     </p>
                 </div>
             </div>

@@ -4,7 +4,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="{{ Auth::user()?->role == 1 ? route('admin.index') : route('users.home') }}" class="brand-link">
-            <span class="brand-text font-weight-light">Task Management</span>
+            <span class="brand-text font-weight-light">Quản lý đơn hàng TikTok</span>
         </a>
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
