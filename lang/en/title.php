@@ -2,7 +2,7 @@
 
 return [
     'toastr' => [
-        'success' => 'Success',
-        'fail' => 'Failed',
+        'success' => 'Thành công',
+        'fail' => 'Thất bại',
     ],
 ];
