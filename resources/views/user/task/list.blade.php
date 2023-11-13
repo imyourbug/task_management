@@ -3,7 +3,7 @@
      <link rel="stylesheet" href="/template/admin/css/task.css">
  @endpush
  @push('scripts')
-     <script src="/js/user/task/index.js" type="text/javascript"></script>
+     <script src="/js/user/task/index.js?v=1" type="text/javascript"></script>
  @endpush
  @section('content')
      <div class="row" style="margin-left: 0px">
