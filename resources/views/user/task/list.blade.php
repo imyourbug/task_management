@@ -38,7 +38,8 @@
                      <th class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">Cod (VNĐ)</th>
                      <th class="col-hidden-sm col-hidden-md">Người nhận</th>
                      <th class="col-hidden-sm col-hidden-md">SDT nhận</th>
-                     <th class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">SDT OTP</th>
+                     {{-- <th class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">SDT OTP</th> --}}
+                     <th class="col-hidden-sm col-hidden-md">SDT OTP</th>
                      <th class="col-hidden-sm col-hidden-md">Địa chỉ giao</th>
                      <th class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg ">Phường/xã giao</th>
                      <th class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">Quận/huyện giao</th>
