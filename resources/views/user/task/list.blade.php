@@ -65,7 +65,7 @@
                          <td class="cancopy col-hidden-sm col-hidden-md" id="phone_receiver{{ $task->id_task }}"
                              data-value="{{ $task->phone_receiver }}">
                              {{ $task->phone_receiver }}</td>
-                         <td class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">
+                         <td class="col-hidden-sm col-hidden-md">
                              {{ $task->phone_otp }}</td>
                          <td class="cancopy col-hidden-sm col-hidden-md" id="address{{ $task->id_task }}"
                              data-value="{{ $task->address }}">
