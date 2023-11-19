@@ -22,4 +22,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Users'], function () {
     Route::get('/task', 'TaskController@getQuantityByType');
     Route::post('/getOTP', 'TaskController@getOTP');
     Route::post('/updateOTP', 'TaskController@updateOTP');
+    Route::get('/getNumberphone', 'TaskController@getNumberphone');
 });

@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    var otp_value = '';
+    var otp_value = "";
     var autoCall = null;
-    var id_task = '';
+    var id_task = "";
     $(".cancopy").css("cursor", "pointer");
     $("#space").click(function (event) {
         let idClicked = event.target.id;
@@ -36,6 +36,7 @@ $(document).ready(function () {
             if (autoCall != null) {
                 clearInterval(autoCall);
             }
+            // get number phone sheet Numberphone
             // display phone get otp
             $.ajax({
                 url: "/user/task/display/" + id_task,
@@ -43,7 +44,7 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response.status == 0) {
                         autoCall = setInterval(function () {
-                            getOTP(id_task);
+                            getOTP(id_task, response.number_phone);
                         }, 5000);
                     }
                     if (response.status == 1) {
@@ -54,16 +55,16 @@ $(document).ready(function () {
         }
     });
 
-    function getOTP(id) {
-        if (otp_value != '') {
+    function getOTP(id, number_phone) {
+        if (otp_value != "") {
             clearInterval(autoCall);
-            console.log('call update OTP');
-            updateOTP(id, otp_value);
+            console.log("call update OTP");
+            updateOTP(id, otp_value, number_phone);
             return;
         }
         $.ajax({
             url: "/api/getOTP",
-            data: { id },
+            data: { id, number_phone },
             type: "POST",
             success: function (response) {
                 if (response.status == 0) {
@@ -77,7 +78,7 @@ $(document).ready(function () {
     function updateOTP(id, otp) {
         $.ajax({
             url: "/api/updateOTP",
-            data: { id, otp },
+            data: { id, otp, number_phone },
             type: "POST",
             success: function (response) {
                 if (response.status == 0) {

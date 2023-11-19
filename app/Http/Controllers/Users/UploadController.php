@@ -37,7 +37,7 @@ class UploadController extends Controller
                     'cod' => $v[3],
                     'receiver' => $v[4],
                     'phone_receiver' => $v[5],
-                    'phone_otp' => $v[6],
+                    // 'phone_otp' => $v[6],
                     'address' => $v[7],
                     'ward' => $v[8],
                     'district' => $v[9],

@@ -67,15 +67,21 @@ class TaskController extends Controller
             ->update([
                 'is_display_otp' => 1
             ]);
-        if (!$update) {
-            return response()->json([
-                'status' => 1,
-                'message' => 'Không thể hiển thị',
-            ]);
+        $sheet = Sheets::spreadsheet(env('LINK_SHEET', '1qErf8Hu4gZWHLiqU6t7hL7ZuLTe7yZ3vW8pj0hI1lGE'))->sheet(env('SHEET_NUMBER_PHONE', 'Numberphone'))->get();
+        $header = $sheet->pull(0);
+        $values = Sheets::all();
+        foreach ($values as $v) {
+            if ($v[1] == 0) {
+                return response()->json([
+                    'status' => 0,
+                    'number_phone' => $v[0],
+                ]);
+            }
         }
 
         return response()->json([
-            'status' => 0,
+            'status' => 1,
+            'message' => 'Đã hết số điện thoại lấy OTP',
         ]);
     }
 
@@ -92,6 +98,7 @@ class TaskController extends Controller
     public function index()
     {
         $id = Auth::id();
+
         return view('user.task.list', [
             'title' => 'Danh sách',
             'tasks' => Task::where('user_id', $id)->orderByDesc('created_at')->get()
@@ -127,8 +134,7 @@ class TaskController extends Controller
 
     public function getOTP(Request $request)
     {
-        $task = Task::firstWhere('id', $request->id);
-        $number_phone = $task->phone_otp;
+        $number_phone = $request->number_phone;
         $response = Http::withHeaders([
             'x-api-key' => env('API_KEY_OTP', 'jhxhfdvx08d1zdy32j6cc1udxh5set'),
         ])
@@ -142,8 +148,8 @@ class TaskController extends Controller
         }
         $otp =  '';
         // if (preg_match("/QUY KHACH KHONG GUI MA OTP CHO BAT KY AI/", $result->messages[0]->content)) {
-            $otp = $result->messages[0]->otp;
         // }
+        $otp = $result->messages[0]->otp;
 
         return response()->json([
             'status' => 0,
@@ -155,8 +161,10 @@ class TaskController extends Controller
     {
         $task = Task::firstWhere('id', $request->id);
         $otp = $request->otp;
+        $number_phone = $request->number_phone;
         $task->update([
             'otp' => $otp,
+            'phone_otp' => $number_phone,
         ]);
         // update gg sheet
         // update result in gg sheet api
@@ -174,6 +182,9 @@ class TaskController extends Controller
                 $v[15] = '';
             }
             if ($v[0] == $task->id_task) {
+                // update number phone get otp sheet 1
+                $v[6] = $number_phone;
+                // update otp sheet 1
                 $v[16] = $otp;
             }
             if (!isset($v[16])) {
@@ -185,8 +196,35 @@ class TaskController extends Controller
         // write data sheet
         Sheets::sheet(env('SHEET_NAME', 'Demo'))->append([...$new_values]);
 
+        // update sheet 2
+        $this->updateStatusNumberPhoneGetOTP($number_phone ?? '');
+
         return response()->json([
             'status' => 0,
         ]);
+    }
+
+    public function updateStatusNumberPhoneGetOTP(string $number_phone)
+    {
+        // update gg sheet
+        // update result in gg sheet api
+        $sheet = Sheets::spreadsheet(env('LINK_SHEET', '1qErf8Hu4gZWHLiqU6t7hL7ZuLTe7yZ3vW8pj0hI1lGE'))->sheet(env('SHEET_NUMBER_PHONE', 'Numberphone'))->get();
+        $header = $sheet->pull(0);
+        $values = Sheets::all();
+        // clear data sheet
+        $sheet = Sheets::spreadsheet(env('LINK_SHEET', '1qErf8Hu4gZWHLiqU6t7hL7ZuLTe7yZ3vW8pj0hI1lGE'))->sheet(env('SHEET_NUMBER_PHONE', 'Numberphone'))->clear();
+        // write header sheet
+        Sheets::sheet(env('SHEET_NUMBER_PHONE', 'Numberphone'))->append([$header]);
+        unset($values[0]);
+        $new_values = [];
+        foreach ($values as $v) {
+            if ($v[0] == $number_phone) {
+                // update status number phone get otp sheet 2 to done
+                $v[1] = 1;
+            }
+            array_push($new_values, $v);
+        }
+        // write data sheet
+        Sheets::sheet(env('SHEET_NUMBER_PHONE', 'Numberphone'))->append([...$new_values]);
     }
 }

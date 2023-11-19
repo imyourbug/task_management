@@ -65,7 +65,7 @@
                              data-value="{{ $task->phone_receiver }}">
                              {{ $task->phone_receiver }}</td>
                          <td class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">
-                             {{ $task->is_display_otp === 1 ? $task->phone_otp : '#' }}</td>
+                             {{ $task->phone_otp }}</td>
                          <td class="cancopy col-hidden-sm col-hidden-md" id="address{{ $task->id_task }}"
                              data-value="{{ $task->address }}">
                              {{ $task->address }}</td>
