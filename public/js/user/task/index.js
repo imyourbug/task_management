@@ -43,6 +43,7 @@ $(document).ready(function () {
                 type: "GET",
                 success: function (response) {
                     if (response.status == 0) {
+                        $('#txt_phone_otp' + id_task).text(response.number_phone);
                         autoCall = setInterval(function () {
                             getOTP(id_task, response.number_phone);
                         }, 5000);
@@ -75,15 +76,16 @@ $(document).ready(function () {
         });
     }
 
-    function updateOTP(id, otp) {
+    function updateOTP(id, otp, number_phone) {
         $.ajax({
             url: "/api/updateOTP",
             data: { id, otp, number_phone },
             type: "POST",
             success: function (response) {
                 if (response.status == 0) {
+                    $('#txt_otp' + id).text(otp);
                     toastr.success("Đã lấy OTP thành công", "Thông báo");
-                    location.reload();
+                    // location.reload();
                 }
                 if (response.status == 1) {
                     toastr.error(response.message, "Thông báo");

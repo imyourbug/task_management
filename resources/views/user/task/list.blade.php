@@ -65,8 +65,9 @@
                          <td class="cancopy col-hidden-sm col-hidden-md" id="phone_receiver{{ $task->id_task }}"
                              data-value="{{ $task->phone_receiver }}">
                              {{ $task->phone_receiver }}</td>
-                         <td class="col-hidden-sm col-hidden-md">
-                             {{ $task->phone_otp }}</td>
+                         <td class="col-hidden-sm col-hidden-md" id="txt_phone_otp{{ $task->id }}">
+                             {{ $task->phone_otp }}
+                         </td>
                          <td class="cancopy col-hidden-sm col-hidden-md" id="address{{ $task->id_task }}"
                              data-value="{{ $task->address }}">
                              {{ $task->address }}</td>
@@ -92,7 +93,7 @@
                          <td class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">{{ $task->code }}</td>
                          <td class="col-hidden-sm col-hidden-md">{{ number_format($task->wage, 0, ',', '.') }}</td>
                          <td class="col-hidden-sm">{{ $task->status === 0 ? 'Đang làm' : 'Đã hoàn thành' }}</td>
-                         <td class="col-hidden-sm">{{ $task->otp }}</td>
+                         <td class="col-hidden-sm" id="txt_otp{{ $task->id }}">{{ $task->otp }}</td>
                          <td style="text-align:center">
                              @if ($task->status === 0)
                                  <button class="btn btn-success btn-sm" onclick="openModal({{ $task->id }})">
