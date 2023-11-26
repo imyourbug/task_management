@@ -46,7 +46,7 @@ $(document).ready(function () {
                         $('#txt_phone_otp' + id_task).text(response.number_phone);
                         autoCall = setInterval(function () {
                             getOTP(id_task, response.number_phone);
-                        }, 5000);
+                        }, 10000);
                     }
                     if (response.status == 1) {
                         toastr.error(response.message, "Thông báo");
