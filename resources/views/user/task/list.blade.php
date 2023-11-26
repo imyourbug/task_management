@@ -138,7 +138,7 @@
              <div class="container">
                  <h4>Nhập ID đơn hàng của bạn để hoàn thành</h4>
                  <label><b>ID đơn hàng</b></label>
-                 <input type="text" class="form-control" placeholder="Nhập ID đơn hàng..." name="id_order" required>
+                 <input type="text" class="form-control" placeholder="Nhập ID đơn hàng..." name="id_order" required />
                  <div class="authen">
                  </div>
              </div>

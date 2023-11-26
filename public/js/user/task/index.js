@@ -103,9 +103,9 @@ $(document).ready(function () {
             $('.authen').append(`
             <label><b>Tài khoản</b></label>
             <input type="text" class="form-control" placeholder="Nhập tài khoản..." name="username"
-            required>
+            required />
             <label><b>Mật khẩu</b></label>
-            <input type="password" class="form-control" placeholder="Nhập mật khẩu..." name="password" required>
+            <input type="password" class="form-control" placeholder="Nhập mật khẩu..." name="password" required />
             `);
         }
         $('#id01').css('display', 'block');
