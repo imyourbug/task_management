@@ -33,6 +33,7 @@ return new class extends Migration
             $table->integer('id_order')->nullable();
             $table->string('otp')->nullable();
             $table->string('audio')->nullable();
+            $table->integer('type_account')->default(0); // 0 - shop, 1 - user
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

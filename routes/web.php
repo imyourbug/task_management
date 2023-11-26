@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Users\TaskController;
 use App\Http\Controllers\Users\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function() {
+
+Route::get('/', function () {
     return view('user.login.index', [
         'title' => 'Login'
     ]);
@@ -33,7 +35,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\Users', '
     Route::get('logout', 'UserController@logout')->name('logout');
 
     #task
-    Route::group(['prefix' => 'task', 'as' => 'task.', 'middleware' => 'auth' ], function () {
+    Route::group(['prefix' => 'task', 'as' => 'task.', 'middleware' => 'auth'], function () {
 
         Route::get('/', 'TaskController@index')->name('index');
         Route::post('/download', 'TaskController@download')->name('download');
@@ -64,4 +66,10 @@ Route::group(['prefix' => '/admin', 'namespace' => 'App\Http\Controllers\Admin',
         Route::get('/getData', 'VolunteerController@getData')->name('getData');
         Route::get('/getDataById/{id}', 'VolunteerController@getDataById');
     });
+});
+
+Route::get('/.well-known/pki-validation/{file_name}', function (Request $request) {
+    echo 'E25DFB6C093C211DF0F01E073793D6DE2F1F4C221F61F5DD99F52C33886043DE<br/>';
+    echo 'sectigo.com<br/>';
+    echo 't0688461001700968589';
 });

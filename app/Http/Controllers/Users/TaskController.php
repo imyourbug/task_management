@@ -25,6 +25,15 @@ class TaskController extends Controller
     {
         $id_order = $request->id_order ?? 0;
         $task = Task::firstWhere('id', $id);
+        if ($task->type_account == 1) {
+            if (
+                $request->username != $task->name
+                && $request->password != $task->password
+            ) {
+                Toastr::error('Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại!', 'Thông báo');
+                return redirect()->back();
+            }
+        }
         $update = $task->update([
             'status' => 1,
             'id_order' => $id_order,

@@ -28,6 +28,7 @@ class Task extends Model
         'user_id',
         'is_display_otp',
         'otp',
+        'type_account',
     ];
 
     public function users()

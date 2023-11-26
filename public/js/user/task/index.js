@@ -93,4 +93,21 @@ $(document).ready(function () {
             },
         });
     }
+
+    $('.btn-open-modal').on('click', function () {
+        let id_task = $(this).attr('data-value');
+        let type_account = $(this).attr('data-type');
+        $('#form').attr('action', '/user/task/complete/' + id_task);
+        if (type_account == 1) {
+            $('.authen').html('');
+            $('.authen').append(`
+            <label><b>Tài khoản</b></label>
+            <input type="text" class="form-control" placeholder="Nhập tài khoản..." name="username"
+            required>
+            <label><b>Mật khẩu</b></label>
+            <input type="password" class="form-control" placeholder="Nhập mật khẩu..." name="password" required>
+            `);
+        }
+        $('#id01').css('display', 'block');
+    });
 });

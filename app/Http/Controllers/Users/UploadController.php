@@ -22,6 +22,7 @@ class UploadController extends Controller
             return redirect()->back();
         }
         $type = $request->input('code_freeship', '');
+        $type_account = $request->input('type_account', '');
         $sheet = Sheets::spreadsheet(env('LINK_SHEET', '1qErf8Hu4gZWHLiqU6t7hL7ZuLTe7yZ3vW8pj0hI1lGE'))
             ->sheet(env('SHEET_NAME', 'Demo'))->get();
         $sheet->pull(0);
@@ -45,7 +46,8 @@ class UploadController extends Controller
                     'link' => $v[11],
                     'code' => $v[12],
                     'wage' => $v[13],
-                    'user_id' => $user_id
+                    'user_id' => $user_id,
+                    'type_account' => $type_account,
                 ]);
                 Toastr::success(__('message.success.add'), __('title.toastr.success'));
 

@@ -22,6 +22,16 @@
                          Mã giảm 70k
                      </option>
                  </select>
+                 <label>Lựa chọn loại tài khoản</label>&emsp13;
+                 <select name="type_account" id="type_account">
+                     <option value="0">
+                         Tài khoản của shop
+                     </option>
+                     <option value="1">
+                         Tài khoản người dùng
+                     </option>
+
+                 </select>
                  <button type="submit" class="btn btn-rounded btn-success">Tải lên nhiệm vụ mới</button>
              </div>
              @csrf
@@ -96,7 +106,8 @@
                          <td class="col-hidden-sm" id="txt_otp{{ $task->id }}">{{ $task->otp }}</td>
                          <td style="text-align:center">
                              @if ($task->status === 0)
-                                 <button class="btn btn-success btn-sm" onclick="openModal({{ $task->id }})">
+                                 <button class="btn btn-success btn-sm btn-open-modal"
+                                     data-type="{{ $task->type_account }}" data-value="{{ $task->id }}">
                                      <i class="fa-solid fa-check"></i>
                                  </button>
                              @endif
@@ -116,7 +127,7 @@
              </thead>
          </table>
      </div>
-     <div id="id01" class="modal">
+     <div id="id01" style="display: none" class="modal">
          <form class="modal-content animate" id="form" style="max-width: 500px !important; padding: 10px 15px"
              method="GET">
              <div class="imgcontainer">
@@ -128,27 +139,13 @@
                  <h4>Nhập ID đơn hàng của bạn để hoàn thành</h4>
                  <label><b>ID đơn hàng</b></label>
                  <input type="text" class="form-control" placeholder="Nhập ID đơn hàng..." name="id_order" required>
+                 <div class="authen">
+                 </div>
              </div>
              <button class="btn btn-rounded btn-success mt-2" style="">Hoàn thành</button>
              <button class="btn btn-rounded btn-danger mt-2"
                  onclick="document.getElementById('id01').style.display='none'" style="">Đóng</button>
          </form>
      </div>
-     <script>
-         function openModal(id_task) {
-             console.log(id_task);
-             let form = document.getElementById('form');
-             form.setAttribute('action', '/user/task/complete/' + id_task);
-             document.getElementById('id01').style.display = 'block';
-         }
-         // Get the modal
-         var modal1 = document.getElementById('id01');
-
-         // When the user clicks anywhere outside of the modal, close it
-         window.onclick = function(event) {
-             if (event.target == modal1) {
-                 modal1.style.display = "none";
-             }
-         }
-     </script>
+     <script></script>
  @endsection
