@@ -102,10 +102,10 @@
                          </td>
                          <td class="col-hidden-sm col-hidden-md col-hidden-lg col-hidden-splg">{{ $task->code }}</td>
                          <td class="col-hidden-sm col-hidden-md">{{ number_format($task->wage, 0, ',', '.') }}</td>
-                         <td class="col-hidden-sm">{{ $task->status === 0 ? 'Đang làm' : 'Đã hoàn thành' }}</td>
+                         <td class="col-hidden-sm">{{ $task->status == 0 ? 'Đang làm' : 'Đã hoàn thành' }}</td>
                          <td class="col-hidden-sm" id="txt_otp{{ $task->id }}">{{ $task->otp }}</td>
                          <td style="text-align:center">
-                             @if ($task->status === 0)
+                             @if ($task->status == 0)
                                  <button class="btn btn-success btn-sm btn-open-modal"
                                      data-type="{{ $task->type_account }}" data-value="{{ $task->id }}">
                                      <i class="fa-solid fa-check"></i>

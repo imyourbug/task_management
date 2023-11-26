@@ -16,7 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/template/admin/dist/css/adminlte.min.css">
     <!-- ajax -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <style>
         .hidden {
@@ -77,7 +77,7 @@
             </section>
         </div>
     </div>
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     {{-- <script src="/template/admin/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
     <script src="/template/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -87,7 +87,7 @@
     {{-- <script src="/template/admin/js/main.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <div class="Toastify"></div>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
     @stack('scripts')
 </body>
