@@ -40,7 +40,7 @@ class UserController extends Controller
     public function recover(RecoverRequest $request)
     {
         if (!$user = User::firstWhere('email', $request->input('email'))) {
-            Toastr::error('Email không tồn tại!', __('title.toastr.error'));
+            Toastr::error('Email không tồn tại!', 'Thông báo');
             return redirect()->back();
         }
         $source = [
@@ -57,7 +57,7 @@ class UserController extends Controller
             Mail::to($request->input('email'))->send(new RecoverPasswordMail($new_password));
         }
 
-        Toastr::success('Lấy mật khẩu thành công! Hãy kiểm tra email của bạn', __('title.toastr.success'));
+        Toastr::success('Lấy mật khẩu thành công! Hãy kiểm tra email của bạn', 'Thông báo');
         return redirect()->back();
     }
 
@@ -70,11 +70,11 @@ class UserController extends Controller
     public function checkLogin(LoginRequest $request)
     {
         if (Auth::attempt($request->validated())) {
-            Toastr::success(__('message.success.login'), __('title.toastr.success'));
+            Toastr::success('Đăng nhập thành công', 'Thông báo');
             $user = Auth::user();
             return redirect()->route($user->role == 1 ? 'admin.index' : 'users.home');
         }
-        Toastr::error(__('message.fail.login'), __('title.toastr.fail'));
+        Toastr::error('Đăng nhập thất bại', 'Thông báo');
         return redirect()->back();
     }
 
@@ -84,17 +84,17 @@ class UserController extends Controller
             'password' => Hash::make($request->input('password'))
         ]);
         if ($rs) {
-            Toastr::success(__('message.success.change_password'), __('title.toastr.success'));
+            Toastr::success('Đổi mật khẩu thành công', 'Thông báo');
             return response()->json([
                 'status' => 0,
-                'message' => __('message.success.change_password')
+                'message' => 'Đổi mật khẩu thành công'
             ]);
         }
-        Toastr::success(__('message.fail.change_password'), __('title.toastr.fail'));
+        Toastr::error('Đổi mật khẩu thất bại', 'Thông báo');
 
         return response()->json([
             'status' => 1,
-            'message' => __('message.fail.change_password')
+            'message' => 'Đổi mật khẩu thất bại'
         ]);
     }
 
@@ -108,14 +108,14 @@ class UserController extends Controller
     public function checkRegister(RegisterRequest $request)
     {
         if (User::firstWhere('email', $request->input('email'))) {
-            Toastr::error('Email đã có người đăng ký!', __('title.toastr.fail'));
+            Toastr::error('Email đã có người đăng ký!', 'Thông báo');
             return redirect()->back();
         }
         if (User::create($request->except('repassword'))) {
-            Toastr::success(__('message.success.register'), __('title.toastr.success'));
+            Toastr::success('Đăng ký thành công', 'Thông báo');
             return redirect()->route('users.login');
         }
-        Toastr::error(__('message.fail.register'), __('title.toastr.fail'));
+        Toastr::error('Đăng ký thất bại', 'Thông báo');
         return redirect()->back();
     }
 }
