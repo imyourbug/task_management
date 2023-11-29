@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/template/admin/css/filter.css">
     {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"> --}}
     <!-- ajax -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <style>
         .hidden {
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     {{-- <script src="/template/admin/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
     <script src="/template/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -79,7 +79,7 @@
     <!-- main.js-->
     {{-- <script src="/template/admin/js/main.js"></script> --}}
     <div class="Toastify"></div>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <script src="/js/user/login/index.js" type="text/javascript"></script>
     {!! Toastr::message() !!}
 </body>
