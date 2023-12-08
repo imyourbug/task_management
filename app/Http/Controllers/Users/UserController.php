@@ -11,6 +11,7 @@ use App\Mail\RecoverPasswordMail;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Toastr;
@@ -109,13 +110,22 @@ class UserController extends Controller
     {
         if (User::firstWhere('email', $request->input('email'))) {
             Toastr::error('Email đã có người đăng ký!', 'Thông báo');
+
             return redirect()->back();
         }
         if (User::create($request->except('repassword'))) {
+            $ip = $request->ip();
+            $info_ip = json_encode([
+                'ip' => $ip,
+                'count' => 0
+            ]);
+            Cache::put($ip, $info_ip, 24 * 60 * 60);
             Toastr::success('Đăng ký thành công', 'Thông báo');
+
             return redirect()->route('users.login');
         }
-        Toastr::error('Đăng ký thất bại', 'Thông báo');
+        Toastr::error(__('message.fail.register'), 'Thông báo');
+
         return redirect()->back();
     }
 }
