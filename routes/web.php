@@ -28,7 +28,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\Users', '
     Route::post('recover', 'UserController@recover')->name('recover');
     Route::post('login', 'UserController@checkLogin')->name('checkLogin');
     Route::get('register', 'UserController@register')->name('register');
-    Route::post('register', 'UserController@checkRegister')->name('checkRegister')->middleware('register.perday');
+    Route::post('register', 'UserController@checkRegister')->name('checkRegister');
     Route::post('change_password', 'UserController@changePassword')->name('changePassword');
     Route::get('logout', 'UserController@logout')->name('logout');
 
